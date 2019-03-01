@@ -1,26 +1,43 @@
 import React from 'react';
 import Board from './Board';
+import { connect } from 'react-redux';
+import store from '../index'
 
-class Game extends React.Component {
-  constructor(props) {
-    super(props);
+const Game = ({activeLetter, subscribe}) => {
 
-    this.state = {};
+console.log("active letter: ", activeLetter)
+  function handleNewThing(event) {
+    const { dispatch } = props;
+    event.preventDefault();
+    const action = {
+      type: "SHOW_MESSAGE"
+    };
   }
-  render() {
-    return (<div className="game">
+
+  return (
+    <div className="game">
       <div className="game-board">
         <Board/>
       </div>
       <div className="game-info">
-        <div>{/* status */}</div>
+        <div>{   }</div>
         <ol>{/* TODO */}</ol>
       </div>
-
-    </div>);
-  }
-
-
+    </div>
+  );
 }
 
-export default Game;
+const mapStateToProps = (state) => {
+  return {
+    activeLetter: state.activeLetter
+  }
+}
+
+// console.log("store is: ", props.store)
+// store.subscribe(() => console.log('sub triggered'))
+
+//REDEFINES THE ENTIRE COMPONENT AS THE RETURN VALUE OF 'CONNECT()'
+//NOTATION HERE CAN ALSO READ 'export default connect()(Game)' AS ONE LINE OF CODE
+// Game = connect()(Game);
+//
+export default connect(mapStateToProps)(Game);

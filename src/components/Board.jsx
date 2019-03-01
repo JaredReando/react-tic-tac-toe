@@ -13,7 +13,6 @@ class Board extends React.Component {
     // this.handleToggleLetter = this.handleToggleLetter.bind(this)
   }
 
-
   handleClick(i) {
     if (this.calculateWinner(this.state.squares) || this.state.squares[i]) {
       return;
@@ -77,7 +76,6 @@ class Board extends React.Component {
   render() {
     const winner = this.calculateWinner(this.state.squares);
     let status;
-
     if (winner) {
       status = `Player ${winner} won!`;
     } else { status='Next Player: '+ this.state.activeLetter; }
